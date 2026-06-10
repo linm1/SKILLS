@@ -76,7 +76,7 @@ def _write_two_sheet_xlsx(path: Path) -> None:
         zf.writestr("xl/worksheets/sheet2.xml", SHEET_XML)
 
 
-def _run_extract(*args: str) -> subprocess.CompletedProcess[str]:
+def _run_extract(*args: str) -> subprocess.CompletedProcess:
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
     return subprocess.run(

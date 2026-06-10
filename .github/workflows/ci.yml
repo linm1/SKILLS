@@ -24,14 +24,10 @@ jobs:
           python-version: '3.8'
       - run: pip install -r .github/skills/sas-schema/scripts/requirements.txt
       - run: python .github/skills/sas-schema/scripts/run_sas_schema.py --help
-      - name: Generate synthetic fixture
+      - name: Download sample fixture
         run: |
-          python - <<'PY'
-          import pandas as pd, pyreadstat
-          df = pd.DataFrame({"Name":["Ana","Ben","Cara"], "Dept":["Sales","Eng","Sales"], "Age":[30,41,25]})
-          pyreadstat.write_sas7bdat(df, "fixture.sas7bdat")
-          print("wrote fixture.sas7bdat")
-          PY
+          curl -fsSL -o fixture.sas7bdat \
+            https://raw.githubusercontent.com/Roche/pyreadstat/e23b1d8e56b155586cc562827972b6f7e30aab00/test_data/basic/sample.sas7bdat
       - run: python .github/skills/sas-schema/scripts/run_sas_schema.py analyze fixture.sas7bdat > out.json 2>/dev/null
       - run: python -c "import json,sys; d=json.load(open('out.json')); assert d.get('success') is True, d; print('analyze OK')"
 
