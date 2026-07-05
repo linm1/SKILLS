@@ -1,11 +1,12 @@
 # SKILLS
 
-Two ready-to-use AI helper skills for VS Code Copilot Chat.
+Three ready-to-use AI helper skills for VS Code Copilot Chat.
 
 ## What's inside
 
 - **tabview-to-json** — Turn a CSV or Excel (.xlsx/.xlsm) file into clean JSON data. Filter rows, pick columns, or view the table in your browser. No setup needed.
 - **sas-schema** — Inspect SAS (`.sas7bdat`) data files and get their structure and schema as JSON. Needs a one-time setup.
+- **qc-clinical-programming** — Independent QC for clinical-trial programming deliverables (SDTM, ADaM, TLFs, define.xml). No setup needed.
 
 ## First-time setup
 
