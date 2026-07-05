@@ -1,7 +1,9 @@
 # SDTM Domain QC Reference
 
 Read this before QCing any SDTM domain. Order of operations: structure →
-content → cross-domain → conformance.
+content → cross-domain → conformance. For the enumerable industry validation
+rules (FDA/CORE/P21-style, tagged by who catches what), see
+`sdtm-business-rules.md`.
 
 ## Structural checks (every domain)
 

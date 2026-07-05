@@ -343,6 +343,8 @@ Read the relevant reference file before Phase 1 of that deliverable type. Each
 contains domain checklists, common unknown-known traps, and SAS-specific
 technique.
 
+Process references (how to QC):
+
 - `references/sdtm-qc.md` — SDTM domain QC: structure, CT, `--SEQ`, RELREC /
   SUPPQUAL, EPOCH, common date/imputation traps.
 - `references/adam-qc.md` — ADaM QC: ADSL-first order, traceability, analysis
@@ -354,6 +356,21 @@ technique.
 - `references/high-risk-domains.md` — endpoint/domain blindspots: TTE,
   exposure, labs/toxicity, coding, disposition, PRO/QS, subgroups, estimands,
   and intercurrent events.
+
+Business-rule references (what to check) — industry validation rules from
+FDA Business Rules, CDISC Conformance Rules / CORE, and Pinnacle 21 check
+families, restated as testable logic and tagged by whether validators already
+catch them ([V]) or independent QC must ([QC]):
+
+- `references/sdtm-business-rules.md` — identifier/date/DM rules, the
+  death-consistency triple, findings/events/interventions rules, visit and
+  TS rules, SUPP-- rules, SAS rule-sweep pattern.
+- `references/adam-business-rules.md` — ADaM principles as checks, naming and
+  flag rules, imputation-flag-vs-source cross-check, ADSL population algebra,
+  BDS/OCCDS/ADTTE rules, cross-dataset consistency.
+- `references/tlf-business-rules.md` — display conventions, AE-table
+  monotonicity arithmetic, table-family rules, cross-output reconciliation
+  matrix.
 
 ## Working with other skills
 

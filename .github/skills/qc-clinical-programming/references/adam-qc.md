@@ -1,7 +1,9 @@
 # ADaM Dataset QC Reference
 
 Read this before QCing any ADaM dataset. Always QC ADSL first — every other
-ADaM dataset inherits from it, and an ADSL error propagates everywhere.
+ADaM dataset inherits from it, and an ADSL error propagates everywhere. For
+the enumerable ADaMIG conformance rules and industry check logic, see
+`adam-business-rules.md`.
 
 ## ADSL
 

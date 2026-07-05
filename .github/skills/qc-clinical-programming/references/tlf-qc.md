@@ -3,6 +3,8 @@
 Read this before QCing a table, listing, or figure. The governing principle:
 QC the numbers, not the typesetting — but confirm with the user which
 elements are in QC scope (some sponsors require footnote/layout QC too).
+For display conventions, AE-table monotonicity arithmetic, and the
+cross-output reconciliation matrix, see `tlf-business-rules.md`.
 
 ## Method selection
 
