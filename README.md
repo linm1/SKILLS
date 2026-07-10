@@ -7,6 +7,7 @@ Three ready-to-use AI helper skills for VS Code Copilot Chat.
 - **tabview-to-json** — Turn a CSV or Excel (.xlsx/.xlsm) file into clean JSON data. Filter rows, pick columns, or view the table in your browser. No setup needed.
 - **sas-schema** — Inspect SAS (`.sas7bdat`) data files and get their structure and schema as JSON. Needs a one-time setup.
 - **qc-clinical-programming** — Independent QC for clinical-trial programming deliverables (SDTM, ADaM, TLFs, define.xml). No setup needed.
+- **finding-your-unknowns** — Surface gaps between a spec and the real codebase before implementing: bug fixes, feature scoping, UI/UX, backend tuning, mid-task checks, and pre/post-merge reviews. No setup needed.
 
 ## First-time setup
 
@@ -28,6 +29,20 @@ Only needed for **sas-schema**. tabview-to-json works immediately with no setup.
    ```bash
    PYTHON=/path/to/python3 bash setup.sh
    ```
+
+## Install via npx skills
+
+List all skills in this repo:
+
+```bash
+npx skills@latest add linm1/SKILLS --list
+```
+
+Install one skill globally (example: finding-your-unknowns):
+
+```bash
+npx skills@latest add linm1/SKILLS --skill finding-your-unknowns --global
+```
 
 ## How to use (VS Code Copilot Chat)
 
