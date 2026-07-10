@@ -1,6 +1,6 @@
 # SKILLS
 
-Three ready-to-use AI helper skills for VS Code Copilot Chat.
+Ready-to-use AI helper skills for VS Code Copilot Chat.
 
 ## What's inside
 
