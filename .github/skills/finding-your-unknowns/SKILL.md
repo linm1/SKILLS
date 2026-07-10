@@ -65,6 +65,8 @@ Once a technique resolves the blocking uncertainty, stop. Running all eight by d
 
 Stop per blocker, not after the first artifact. An item marked assumed, pending, or escalated is still unresolved. Route it once to the smallest matching technique: an open design or architecture choice to Brainstorm & Prototype; a stakeholder or API contract to Interview Me; missing prior art to References; a multi-step or costly-to-reverse change to Implementation Plan. Then stop as soon as implementation can proceed without a hidden bet.
 
+For complex feature, UI/UX, or backend work, write the Implementation Plan before edits once discovery identifies more than one change or a costly-to-reverse decision. Brainstorm & Prototype compares approaches; it does not replace the plan.
+
 ## How to run a technique
 
 Each of the eight techniques lives in a reference file. When you decide to run one:
