@@ -56,6 +56,10 @@ Minimum intake:
    post-hoc request.
 4. Applicable documents and versions: protocol, SAP, TLF shells, dataset
    specs, define.xml, annotated CRF, SDRG/ADRG, data cutoff/transfer version.
+   For an analysis dataset spec review specifically: spec version and
+   approval state (draft/internal-reviewed/sponsor-approved), whether sponsor
+   approval is required per the governing project plan, and whether an
+   automated spec-check report exists for the version under review.
 5. Standards and configurations: SDTM IG, ADaM IG, CDISC CT version, MedDRA /
    WHODrug version, Pinnacle 21 engine and rule configuration.
 6. Sponsor/company conventions: macros, style guide, imputation conventions,
@@ -80,6 +84,9 @@ that matches the user's ask and SOP.
 | Output review QC | Only rendered TLF/PDF/RTF or reviewer-facing output is available | Cell/value checks, shell/style findings, traceability notes |
 | Submission package QC | define.xml, XPTs, SDRG/ADRG, P21, eCTD programming package | Cross-artifact consistency and conformance triage |
 | Manager review | User is assigning/reviewing another programmer's QC work | Delegation checklist, review questions, coaching feedback |
+
+For an Analysis Dataset Specification (ADS), spec blindspot review splits into
+two parallel passes — see `references/adam-qc.md`.
 
 When the chosen mode is not independent programming, keep the independence rule
 in mind but adapt the workflow. For example, code review intentionally reads
@@ -347,8 +354,9 @@ Process references (how to QC):
 
 - `references/sdtm-qc.md` — SDTM domain QC: structure, CT, `--SEQ`, RELREC /
   SUPPQUAL, EPOCH, common date/imputation traps.
-- `references/adam-qc.md` — ADaM QC: ADSL-first order, traceability, analysis
-  flags, PARAM structure, BDS/OCCDS specifics.
+- `references/adam-qc.md` — ADaM QC: ADS spec review (structural/programming
+  and statistical passes, pre-programming), ADSL-first order, traceability,
+  analysis flags, PARAM structure, BDS/OCCDS specifics.
 - `references/tlf-qc.md` — TLF QC: independent number generation, output
   parsing vs dataset comparison, denominators, rounding traps.
 - `references/esub-qc.md` — eSubmission QC: define.xml consistency, ADRG /

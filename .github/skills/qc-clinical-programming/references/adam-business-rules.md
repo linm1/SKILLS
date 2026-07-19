@@ -26,8 +26,14 @@ The four ADaM principles are testable, not aspirational:
 
 ## Naming and structure rules
 
-- **[V]** Dataset named AD------ (≤8 chars); ADSL present; ADSL is one record
-  per subject (test it, don't trust it).
+- **[V]** Dataset named AD------ (≤8 chars), no underscores or special
+  characters; ADSL present; ADSL is one record per subject (test it, don't
+  trust it).
+- **[QC]** Dataset carries a descriptive label; variable names ≤8 chars;
+  character variable content ≤200 chars (XPT transport constraints the spec
+  review, not just the P21/CORE ruleset, must catch).
+- **[QC]** All variable attributes present (label, length, type, format
+  where applicable); no user-defined formats — SAS-supplied formats only.
 - **[V]** Standard variable names carry standard meanings: AVAL, AVALC, PARAM,
   PARAMCD, PARAMN, ABLFL, BASE, CHG, PCHG, DTYPE, ADT/ADTM/ADY, ASTDT/AENDT,
   APERIOD/APHASE, ASEQ, TRTxxP/TRTxxA. Never repurpose a standard name.
@@ -74,6 +80,9 @@ The four ADaM principles are testable, not aspirational:
   the cut, and treated-but-not-randomized.
 - **[QC]** RANDDT vs the DS randomization milestone and (if available) the
   randomization system export — three sources, one date.
+- **[QC]** ADSL carries all subject-level content: baseline demographics and
+  characteristics, plus any TLF grouping variable together with its *N
+  ordering counterpart.
 
 ## BDS rules
 
@@ -160,3 +169,7 @@ The four ADaM principles are testable, not aspirational:
   merge artifact — see `adam-qc.md`).
 - **[QC]** No all-null variables without a define comment justifying presence;
   no variables in the data missing from define (both directions).
+- **[QC]** Source dataset and variable named for every derived variable; no
+  circular variable references; datasets sorted by the unique record
+  identifiers stated in the dataset structure — engines don't reliably trace
+  spec-declared provenance or sort-key intent, only actual sort order.

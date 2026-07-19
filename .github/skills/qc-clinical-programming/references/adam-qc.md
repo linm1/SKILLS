@@ -5,6 +5,71 @@ ADaM dataset inherits from it, and an ADSL error propagates everywhere. For
 the enumerable ADaMIG conformance rules and industry check logic, see
 `adam-business-rules.md`.
 
+## ADS specification review (before programming)
+
+Under a typical CRO/sponsor process the analysis dataset specification is
+drafted, reviewed, and stabilized before ADaM programming starts. A
+programming review and a statistical review run in parallel on the internal
+draft; both clear before programming commences. Distinct phase from dataset
+QC below — QCs the spec document, not derived data. Adapt to the governing
+process; the checks matter more than the document names.
+
+### Structural and programming review
+
+- Cover Page: document versions current; Define-XML version and its CT
+  current.
+- Dataset Metadata, Standards, Documents tabs complete; footer on every tab.
+- Every SAP/TLF-shell table, figure, listing producible from ADS variables,
+  no further derivation in output programs.
+- Origin: v2.1 uses 'Origin - Type'/'Origin - Source'; v2.0 uses single
+  'Origin'. Predecessor variables (from SDTM) keep identical label, length,
+  format to the SDTM source.
+- Sort variables match the unique record identifiers stated for the dataset.
+- Codelists present where a determinate value set exists, CT-matched
+  including version (v2.1).
+- Variable ordering logical (not alphabetic), consistent across datasets.
+- Concatenated subject-header variables (for listing headers) unique across
+  the whole spec, not just within one dataset.
+- Every TLF-shell group/subgroup needing order has a corresponding *N
+  variable matching shell presentation order.
+- 'Validation checks' column populated per the sponsor-agreed level.
+- Variable type sensible: float/integer/datetime/date/time/text.
+- Derivation has no SAS code beyond trivial (CHG=AVAL-BASE); pseudo-code
+  readable without SAS.
+- Automated spec-check report (where the organization provides one) run, and
+  its findings resolved, before the spec goes to reviewers.
+- Data-cut rules, where defined, cover every applicable dataset.
+
+### Statistical review
+
+- Primary/secondary endpoint derivations traceable to and consistent with
+  the SAP.
+- Analysis-set/population definitions match the SAP.
+- Covariates present, correctly typed (categorical/continuous), labelled.
+- Subgroups defined in ADSL and every applicable dataset.
+- Visit-windowing algorithms explicit and accurate.
+- Duration/TTE variables defined, with censoring rules described.
+- Event flags (treatment-emergent, AESI, etc.) defined and accurate.
+- SMQ/CMQ match SAP/documentation, same MedDRA version as coding.
+- Marked-abnormality criteria for labs and vital signs match the SAP.
+- Imputation described accurately, applied to correct parameters, DTYPE
+  specified.
+- CM/MH identification criteria clear, no gaps or conflicts.
+- Baseline derivation and associated flags consistent with the SAP.
+- Derivations need no SAS knowledge to follow — seeds the ADaM Reviewer's
+  Guide.
+
+### Applies to both passes
+
+- PK component: PK concentration dataset metadata merged into the main
+  variable metadata rather than left on a separate tab; where the analysis
+  needs dose-relative timing, the last-dose datetime and relative-time
+  variables (with their unit) are present and correctly derived in the
+  occurrence datasets that reference them. Confirm exact names against the
+  sponsor convention or ADaM PK guidance.
+- Later versions: re-review may be limited to the spreadsheet-compare diff
+  rather than the whole document.
+
 ## ADSL
 
 - One record per subject, full stop. Test it.
