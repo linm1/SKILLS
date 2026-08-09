@@ -110,6 +110,33 @@ A discrepancy is not a failure; it is the mechanism working. Treat spec
 ambiguities as QC findings in their own right because they fix the map for
 everyone downstream.
 
+## The QC map: a worklist beside the record
+
+The findings log is the record — complete, flat, traceable. It is a poor
+worklist: it cannot tell a resuming session which open question blocks progress
+or which one to raise next, because a material spec ambiguity and a cosmetic
+label finding sit in it as peer rows.
+
+For a QC target whose open questions outlive a single session, chart a **map**
+alongside the log. The map names the destination (sign-off on one deliverable
+at one version), indexes the decisions made, and holds the fog — the questions
+from the unknown-knowns and unknown-unknowns quadrants above, written down as
+they surface. Its **tickets** are the open questions, ordered, surfaced to the
+user one at a time.
+
+**Tickets are decisions only.** A ticket is a question whose resolution is a
+human decision that gates further QC work: a spec ambiguity, an assumption
+awaiting confirmation, a missing governing document, an unanswered boundary
+question. Everything else is a log row. Before creating a ticket, ask whether
+it could be a findings-log row instead; if it could, it is not a ticket. The
+log remains the complete record either way.
+
+A small target against a clean, complete spec does not need a map. Say so
+rather than charting an empty one.
+
+Format, governance constraints on where a map may live, and the frontier /
+claim / resolve operations are in `references/qc-map.md`.
+
 ## Independence rule for independent programming QC
 
 When the selected mode is **independent programming QC**, do not read the
@@ -178,6 +205,12 @@ Output of Phase 1 is the first section of the QC findings log. If an ambiguity
 would materially change the output, raise it before programming. Otherwise
 document the chosen interpretation and proceed. Never resolve an ambiguity
 silently.
+
+Phase 1 is also where the map is charted, when one is warranted. Material
+ambiguities and conventions the evidence does not settle become tickets;
+cosmetic and low-risk items stay log rows. Questions you can see coming but
+cannot yet phrase precisely go into the map's Not yet specified section rather
+than being forced into a ticket.
 
 ### Phase 2 — Independent implementation with running notes
 
@@ -262,6 +295,10 @@ Severity:
 Only after your own logic has been re-checked may you open production code for
 independent-programming triage.
 
+Class `S` discrepancies — where two implementations are defensible — graduate
+into tickets, because resolving them is a decision someone must make. The other
+classes stay log rows: they have an owner and an action already.
+
 ### Phase 4 — Residual-risk quiz before sign-off
 
 A clean compare proves agreement, not correctness. Two programs sharing one
@@ -280,6 +317,12 @@ quiz focused on boundary cases and shared assumptions:
   incorrectly?
 - Are the findings, implementation notes, compare outputs, logs, and sign-off
   artifacts sufficient for a reviewer or manager to reconstruct the decision?
+
+Any of these you cannot answer from the spec becomes a ticket, not a waved-
+through assumption at sign-off. Where a map is in use, an empty frontier is not
+sign-off authorization: it proves the questions you asked are answered, not
+that you asked the right ones. The map is done when the frontier is empty and
+every residual-risk question here is resolved or explicitly accepted.
 
 ## QC findings log format
 
@@ -352,6 +395,10 @@ technique.
 
 Process references (how to QC):
 
+- `references/qc-map.md` — the QC map and decision tickets: where a map may
+  live under the governance gate, map and ticket formats, the ticket-vs-log
+  test, frontier / claim / resolve operations, and surfacing a decision to the
+  user.
 - `references/sdtm-qc.md` — SDTM domain QC: structure, CT, `--SEQ`, RELREC /
   SUPPQUAL, EPOCH, common date/imputation traps.
 - `references/adam-qc.md` — ADaM QC: ADS spec review (structural/programming
@@ -404,6 +451,10 @@ it, read the relevant domain skill or reference.
   or blinding/firewall status.
 - Do not let a clean `PROC COMPARE` replace boundary-case checks, log review,
   metadata checks, and residual-risk questioning.
+- Do not write a QC map, ticket, or findings log containing study-specific
+  content into a version-controlled or cloud-synced location without confirming
+  the environment is approved for that content. These files inherit every
+  restriction the governance gate placed on the material they discuss.
 
 ## Scope boundaries
 
