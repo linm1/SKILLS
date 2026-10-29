@@ -67,6 +67,10 @@ P21 output is a finding *generator*, not a verdict. Triage each issue:
   sets differ) in the findings log — a "clean" run against the wrong rule
   configuration is an unknown-unknown factory.
 - Re-run after *any* dataset change; P21 results do not carry over.
+- Run conformance once datasets pass QC, including ADaM datasets not
+  delivered to the sponsor.
+- Interim/DMC runs: still fix findings that signal real programming errors
+  (e.g., study day = 0).
 
 ## Transport file (XPT) technical checks
 

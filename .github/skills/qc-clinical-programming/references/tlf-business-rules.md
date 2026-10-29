@@ -54,6 +54,8 @@ patterns; where marked "confirm", the sponsor style guide or shell wins.
   column* drives the sort — total, active arm, or pooled — and the
   alphabetical tie-break); visits in chronological order including correctly
   placed unscheduled/early-termination rows.
+- Remove shell footnotes that don't apply to the actual data (e.g., an NC
+  footnote when no NC values occur).
 
 ## AE table monotonicity rules
 
@@ -120,10 +122,29 @@ compares of a single table miss.
   inverted ratio (1/x) with its mirrored CI is among the most damaging
   reproducible TLF errors, and both programs can make it independently if
   the SAP's phrasing ("A vs B") is ambiguous. Blindspot-pass any ratio's
-  direction against a hand-computed crude estimate.
+  direction against a hand-computed crude estimate. For PK, state the GMR
+  direction (test/reference) per SAP; the back-transformed GMR is ×100 when
+  shown as a percentage. CI level per SAP (typically 90%).
 - KM outputs: median with CI method per SAP (Brookmeyer–Crowley default);
   numbers-at-risk rows monotone non-increasing; censor tick counts equal the
   ADTTE CNSR>0 frequencies by arm; event counts equal CNSR=0 frequencies.
+
+**PK concentration and parameter outputs**
+
+- BLQ handling differs by output type (listing, summary table, individual
+  figure, mean figure); confirm each against the SAP, since both programmers
+  can make the same wrong choice.
+- LLOQ value and unit stated in a footnote, per shell/SAP.
+- NC (not calculable) footnote where NC values appear.
+- Significant-figure display only where the SAP or shell specifies it;
+  otherwise the decimal-place convention under "Numeric display conventions"
+  above applies. SAS `round()` rounds to decimal places, not significant
+  figures.
+- Geometric mean and geometric CV% per SAP.
+- Exclusions affecting the reported records or their interpretation
+  reconcile to the applicable footnotes.
+- Treatment identified on every page, per shell/style guide.
+- Units shown in the column header or PARAM.
 
 **Listings**
 

@@ -83,6 +83,9 @@ The four ADaM principles are testable, not aspirational:
 - **[QC]** ADSL carries all subject-level content: baseline demographics and
   characteristics, plus any TLF grouping variable together with its *N
   ordering counterpart.
+- **[QC]** Missing grouping/subgroup values are populated consistently per
+  the spec (e.g., a "Missing" category plus a numeric code), not left blank
+  in some datasets and filled in others.
 
 ## BDS rules
 
@@ -98,6 +101,10 @@ The four ADaM principles are testable, not aspirational:
   CHG for records *before* baseline. All three are sponsor conventions
   engines don't know — blindspot-pass items feeding directly into TLF
   denominators.
+- **[QC]** Computed values (e.g., PCHG, ratios) keep full precision unless
+  the SAP, spec or governing convention specifies rounding. In threshold
+  comparisons (e.g., responder if PCHG ≥ 20), compare the unrounded value
+  unless rounding is specified.
 - **[V]** DTYPE in CT (LOCF, WOCF, AVERAGE, PHANTOM...) on derived records.
 - **[QC]** DTYPE-derived records: exactly the records the SAP's imputation
   method implies — re-derive the LOCF chain independently for a sample of
@@ -160,6 +167,9 @@ The four ADaM principles are testable, not aspirational:
 - **[QC]** N(ADSL) vs N(DM): equal, or the difference is exactly the
   documented exclusion set.
 - **[QC]** CT/dictionary versions consistent across SDTM, ADaM, define, ADRG.
+- **[QC]** ADaM inputs limited to SDTM plus ADSL unless the spec mandates
+  another ADaM dependency; confirm the derivation order follows the
+  dependencies.
 
 ## Metadata rules
 

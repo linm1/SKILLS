@@ -60,6 +60,49 @@ Evidence to require:
 - Listing of subjects with dose gaps, overlaps, reductions, missing dates,
   and planned vs actual treatment mismatch.
 
+## Pharmacokinetics (PC, PP, ADPC, ADPP)
+
+Typical targets: PC concentrations, PP parameters, ADPC, ADPP, concentration
+listings and summaries, individual and mean profiles, urine excretion.
+
+Blindspot-pass items:
+
+- Matrix (plasma/serum/urine) and analyte/metabolite list per period, per SAP.
+- Vendor-delivered precision (significant figures) vs displayed precision.
+- PC uniqueness: study-defined key check against the PC spec. Typical
+  components: subject, analyte, specimen/matrix, timepoint, reference time
+  point. Not a universal rule.
+- Sample vs dose datetime precision: match the source capture precision (e.g.
+  keep seconds for infusions where the protocol or SAP needs them); stay
+  aligned with the deviation log.
+- Vendor file vs EDC sample reconciliation: subjects, samples, units,
+  missing-result reasons.
+- Urine collection interval and volume present where amount excreted is
+  needed.
+- Nominal vs actual relative time, and absolute/% time deviation — confirm
+  variable names against sponsor convention or CDISC ADaM PK guidance.
+- Time-window and protocol-deviation exclusion rules from the SAP or
+  analysis-population review minutes, cross-checked against the deviation
+  log/DV.
+- PK population flag consistent with those exclusions.
+- Predose baseline correction for endogenous compounds; handling of negative
+  corrected values.
+- PK parameter file exclusions and comments carried into PP, ADPP flags,
+  summaries and listings.
+- Every SAP parameter present in the parameter file.
+- Dry-run: where the setup intends blank or dummy concentrations, document
+  them as expected in validation/P21 triage; don't "fix" them. Real
+  concentrations can reveal treatment assignment, so route them through the
+  blinding gate.
+
+Evidence to require:
+
+- Vendor-vs-EDC sample reconciliation listing.
+- Listing of samples whose time deviation exceeds the threshold, against the
+  deviation log.
+- Trace of one excluded concentration and one excluded parameter end-to-end
+  to the output footnote.
+
 ## Labs, vital signs, ECG, and toxicity grading
 
 Typical targets: ADLB, ADVS, ADEG, shift tables, worst post-baseline,

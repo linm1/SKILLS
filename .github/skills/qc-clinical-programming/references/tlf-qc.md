@@ -59,6 +59,14 @@ itself. That verifies the machine, not the logic.
 - QC the plotted dataset, not pixels: derive the input dataset for the
   figure and compare. Confirm axis-relevant derivations (e.g., time on
   x-axis — days since first dose vs randomization).
+- Axis labels and units per shell.
+- No clipped points; zero/BLQ values can't be plotted on a log axis. Check
+  the SAP's handling of zero/BLQ points on semi-log profiles (exclusion,
+  substitution, other); it changes the plotted data.
+- Outliers in individual profiles checked against source (SDTM).
+- Mean-figure values equal the summary-table values.
+- Colour vs greyscale per SAP/style guide; series distinguishable without
+  colour.
 
 ## Cross-output consistency (cheap, high-yield)
 

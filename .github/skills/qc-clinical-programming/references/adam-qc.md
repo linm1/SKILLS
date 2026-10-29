@@ -19,31 +19,58 @@ process; the checks matter more than the document names.
 - Cover Page: document versions current; Define-XML version and its CT
   current.
 - Dataset Metadata, Standards, Documents tabs complete; footer on every tab.
-- Every SAP/TLF-shell table, figure, listing producible from ADS variables,
-  no further derivation in output programs.
+  - Dataset Metadata (v2.1): if a subclass is specified, the dataset
+    structure in the variable tab conforms strictly to that subclass's
+    principles; otherwise leave subclass blank.
+  - Standards (v2.1): metadata at dataset, variable and codelist level that
+    does not conform to the default standard is marked non-standard.
+  - Documents: reflects the latest document versions as of define.xml
+    creation.
+- Dataset-, variable- and value-level metadata flagged as having no data
+  (v2.1) carries a stated reason.
+- Every SAP/TLF-shell table, figure, listing producible from ADS variables;
+  no analysis derivation that affects results left to output programs.
+  Presentation-only steps (formatting, ordering, layout) are fine. Transposes
+  and merges an output would need belong in the dataset; otherwise a
+  single-programmed output carries that logic unverified.
 - Origin: v2.1 uses 'Origin - Type'/'Origin - Source'; v2.0 uses single
-  'Origin'. Predecessor variables (from SDTM) keep identical label, length,
-  format to the SDTM source.
+  'Origin'. Variables copied from SDTM have Origin 'Predecessor'; label,
+  meaning and values unchanged (ADaMIG); length and display format also kept
+  identical to SDTM unless the governing process allows otherwise.
 - Sort variables match the unique record identifiers stated for the dataset.
 - Codelists present where a determinate value set exists, CT-matched
   including version (v2.1).
-- Variable ordering logical (not alphabetic), consistent across datasets.
+- Variable ordering logical (not alphabetic), consistent across datasets,
+  e.g. population flags grouped together.
 - Concatenated subject-header variables (for listing headers) unique across
   the whole spec, not just within one dataset.
 - Every TLF-shell group/subgroup needing order has a corresponding *N
   variable matching shell presentation order.
-- 'Validation checks' column populated per the sponsor-agreed level.
+- 'Validation checks' column populated with protocol-specific checks; at
+  minimum every check agreed with the sponsor.
 - Variable type sensible: float/integer/datetime/date/time/text.
 - Derivation has no SAS code beyond trivial (CHG=AVAL-BASE); pseudo-code
   readable without SAS.
+- Pseudo-code, if used, is brief, traceable to the SAP/shell section it
+  implements, and not copy-pasteable as program code — copying spec code
+  into a program undermines independent double programming.
+- Every flag the SAP/shells need (subject-level, record-level, analysis
+  flags) is present in the spec.
+- Spec checked against ADaMIG and any sponsor-specific standards (see
+  `adam-business-rules.md`).
 - Automated spec-check report (where the organization provides one) run, and
   its findings resolved, before the spec goes to reviewers.
-- Data-cut rules, where defined, cover every applicable dataset.
+- Data-cut rules, where defined, cover every applicable dataset: generic
+  subject-selection and data-selection criteria, plus per-dataset detail.
+  State whether the cut is applied at SDTM or ADaM level.
 
 ### Statistical review
 
 - Primary/secondary endpoint derivations traceable to and consistent with
   the SAP.
+- Where the SAP is silent, the derivation must still be sensible; raise with
+  programming lead/statistician and decide whether the SAP should be
+  amended — do not settle it in the spec alone.
 - Analysis-set/population definitions match the SAP.
 - Covariates present, correctly typed (categorical/continuous), labelled.
 - Subgroups defined in ADSL and every applicable dataset.
@@ -69,6 +96,10 @@ process; the checks matter more than the document names.
   sponsor convention or ADaM PK guidance.
 - Later versions: re-review may be limited to the spreadsheet-compare diff
   rather than the whole document.
+- Spec change control: every change after programming starts is recorded
+  (what changed and why) and classed major or minor. A major change goes
+  back through review, with an impact check on the SAP and timelines. Both
+  production and QC are notified.
 
 ## ADSL
 
@@ -117,6 +148,8 @@ process; the checks matter more than the document names.
   subjects including at least one edge case and hand-trace them.
 - Every record in the ADaM dataset should be explainable: either directly
   from SDTM or via a documented derivation (DTYPE populated).
+- SUPP qualifiers merged back to the parent domain before use.
+- Record counts reconciled against the source domain.
 
 ## Metadata conformance
 
@@ -135,3 +168,35 @@ process; the checks matter more than the document names.
   (population flag × analysis flag × window) on both sides before diving
   into values — the mismatch is usually one interpretation bit, not many
   bugs.
+- Compare hygiene:
+  - one compare per dataset in the deliverable;
+  - every non-exact compare annotated; only data issues are acceptable
+    reasons;
+  - variable order compared too;
+  - helper sort variables excluded by name and listed;
+  - QC dataset timestamp newer than its inputs and than the production run.
+
+## Data cut-off and unblinding
+
+- Cut-off: production and QC each write the cut independently. Keep both the
+  cut and full versions. Where the cut dataset is a record subset of the full
+  one under the same derivation, check N(cut) ≤ N(full) per dataset. Where
+  selection or derivation logic differs, reconcile counts against that logic
+  instead. List removed records per dataset for review before TLF work.
+- Unblinding: when real treatment codes arrive, re-verify the
+  treatment-assignment logic against the actual randomization file. Compare
+  blinded vs unblinded datasets; differences should appear only in expected
+  variables. Whoever changes anything re-QCs it. Re-run conformance on the
+  unblinded deliverable. Respect the firewall rules in `SKILL.md`.
+
+## Code-review QC (when not double programming)
+
+- Code review is always paired with input/output testing.
+- Complex datasets get extended review: stepwise execution, interim
+  datasets, and a random input-to-output trace (see Traceability for the
+  hand-trace sample).
+- Search for and verify every hardcode: documented, approved, echoed to the
+  log.
+- Input/output sample: a subject with multiple complete records; all
+  visits/timepoints; subjects in every disposition state (screen failure,
+  ongoing, completed, discontinued).

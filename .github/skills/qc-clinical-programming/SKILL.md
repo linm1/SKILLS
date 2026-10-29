@@ -157,6 +157,13 @@ Production code may be opened only in discrepancy triage, and only after you
 have re-checked your own logic first. If the mode is code review, state that
 independence is not the goal and switch to code-review evidence.
 
+- Study-specific macros are not shared between production and QC; QC writes
+  its own. Only validated global macros kept outside the study area may be
+  shared.
+- Sister-study code: production may start from that study's production code,
+  QC only from its QC code. Never copy between sides, even fragments. Re-used
+  code gets full QC.
+
 ## Workflow
 
 ### Phase 0 — Intake, governance, and mode selection
@@ -230,8 +237,11 @@ SAS conventions for QC programs:
   controlled-terminology membership, row counts by major filters, and log
   review for warnings, uninitialized variables, truncation, many-to-many
   merges, and unintended type conversions.
-- If execution is possible, run the program and review the log. If execution
-  is not possible, label code as draft and list unverified assumptions.
+- If execution is possible, run the program and review the log: full notes on
+  (e.g., `MSGLEVEL=I`) so variable-overwrite notes surface; final run in batch
+  with the complete, unredirected log; QC log clean too, since a dirty one can
+  invalidate the compare; each accepted message annotated with a reason.
+  Otherwise label code as draft and list unverified assumptions.
 
 ### Phase 3 — Compare and triage
 
@@ -299,6 +309,17 @@ Class `S` discrepancies — where two implementations are defensible — graduat
 into tickets, because resolving them is a decision someone must make. The other
 classes stay log rows: they have an owner and an action already.
 
+### Re-QC triggers
+
+- Program changed: re-QC every output it produces.
+- Only one side changed: redo the matching QC.
+- Code unchanged, new data: re-run and re-compare; no full re-review.
+- Code-review QC: review changed sections (version diff); repeat the
+  input/output testing.
+- Neither changed: compare against the prior delivery; explain any difference.
+- Spec change after programming starts: notify both sides and log it; see
+  `references/adam-qc.md`.
+
 ### Phase 4 — Residual-risk quiz before sign-off
 
 A clean compare proves agreement, not correctness. Two programs sharing one
@@ -315,6 +336,10 @@ quiz focused on boundary cases and shared assumptions:
   CT value, or domain record appeared in the next data cut?
 - Which assumptions could both production and QC have made identically but
   incorrectly?
+- Was each layer re-run after its inputs (ADaM after SDTM, TLFs after ADaM)?
+- Were the log scan and compare run after the last program change?
+- Were stale inputs removed before transfer, so a missing file can't reuse
+  old data?
 - Are the findings, implementation notes, compare outputs, logs, and sign-off
   artifacts sufficient for a reviewer or manager to reconstruct the decision?
 
@@ -409,8 +434,8 @@ Process references (how to QC):
 - `references/esub-qc.md` — eSubmission QC: define.xml consistency, ADRG /
   SDRG review, Pinnacle 21 triage, XPT technical checks.
 - `references/high-risk-domains.md` — endpoint/domain blindspots: TTE,
-  exposure, labs/toxicity, coding, disposition, PRO/QS, subgroups, estimands,
-  and intercurrent events.
+  exposure, pharmacokinetics, labs/toxicity, coding, disposition, PRO/QS,
+  subgroups, estimands, and intercurrent events.
 
 Business-rule references (what to check) — industry validation rules from
 FDA Business Rules, CDISC Conformance Rules / CORE, and Pinnacle 21 check
@@ -424,8 +449,8 @@ catch them ([V]) or independent QC must ([QC]):
   flag rules, imputation-flag-vs-source cross-check, ADSL population algebra,
   BDS/OCCDS/ADTTE rules, cross-dataset consistency.
 - `references/tlf-business-rules.md` — display conventions, AE-table
-  monotonicity arithmetic, table-family rules, cross-output reconciliation
-  matrix.
+  monotonicity arithmetic, table-family rules (incl. PK output conventions:
+  BLQ/LLOQ/significant figures), cross-output reconciliation matrix.
 
 ## Working with other skills
 
